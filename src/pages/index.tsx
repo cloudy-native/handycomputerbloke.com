@@ -1,4 +1,4 @@
-import { CheckIcon, InfoIcon, WarningIcon } from '@chakra-ui/icons';
+import { CheckIcon } from '@chakra-ui/icons';
 import {
   Container,
   Flex,
@@ -10,17 +10,18 @@ import {
   VStack,
   Divider,
   Box,
-  Spacer
+  Spacer,
+  Image
 } from '@chakra-ui/react';
 import React from 'react';
 import InfoCard from '../components/info-card';
 
-interface HeroCardProps {
+interface ServiceCardProps {
   heading: string;
   blurb: string[];
 }
 
-const hero: HeroCardProps[] = [
+const services: ServiceCardProps[] = [
   {
     heading: 'Technical Due Diligence',
     blurb: [
@@ -55,24 +56,19 @@ interface TestimonialCardProps {
 
 const testimonials: TestimonialCardProps[] = [
   {
-    role: 'Private Equity Due Diligence',
+    role: 'Private Equity Due Diligence Partnership',
     content:
       'We needed a deeper dive on [company] after we liked the books, people, and product. We brought in SHC for tech due diligence. In 2 days flat they worked the software, the team, infrastructure, and process from head to toe. '
   },
   {
-    role: 'Entrepreneur',
+    role: 'CTO, same company',
     content:
-      "I didn't even need training. We've used EEZY for the last five years. I have gotten at least 50 times the value from EEZY. I made back the purchase price in just 48 hours!"
+      "I can't believe they picked up on all that in 2 days."
   },
   {
-    role: 'Movie star',
+    role: 'Venture Capital Principal',
     content:
-      "Thank you for making it painless, pleasant and most of all, hassle free! I'm good to go. No matter where you go, EEZY is the coolest, most happening thing around! I love EEZY!"
-  },
-  {
-    role: 'Musician',
-    content:
-      'I am so pleased with this product. EEZY is both attractive and highly adaptable. Without EEZY, we would have gone bankrupt by now. Thank you for creating this product!'
+      `You always manage to get to the "and then a miracle happens" when a company presents their ideas.`
   }
 ];
 
@@ -83,10 +79,10 @@ interface QuestionCardProps {
 
 const questions: QuestionCardProps[] = [
   {
-    question: 'How do you plan sprints?',
+    question: "Where's your architecture diagram?",
     answers: [
-      "⚠️ Not sure who has it right now, but there's a spreadsheet.",
-      '❌ ❌ We invented our own version of Agile and have one long sprint really.'
+      '⚠️ Let me send you the PowerPoint.',
+      "⚠️ ⚠️ Here it is, but it's very out of date."
     ]
   },
   {
@@ -94,17 +90,10 @@ const questions: QuestionCardProps[] = [
     answers: ["⚠️ ⚠️ We don't use PRs.", `❌ ❌ No you can't.`]
   },
   {
-    question: 'Can show me your longest open PR and unmerged branch?',
+    question: 'How do you plan sprints?',
     answers: [
-      "⚠️ This PR was made by [redacted] who doesn't work here anymore and we don't want to delete it.",
-      '⚠️ ⚠️ This branch is for the [redacted] feature but there are so many conflicts everything broke when we merged.'
-    ]
-  },
-  {
-    question: "Where's your architecture diagram?",
-    answers: [
-      '⚠️ Let me send you the PowerPoint.',
-      "⚠️ ⚠️ Here it is, but it's very out of date."
+      "⚠️ Not sure who has it right now, but there's a spreadsheet.",
+      '❌ ❌ We invented our own version of Agile and have one long sprint really.'
     ]
   },
   {
@@ -139,7 +128,7 @@ const solutions: SolutionCardProps[] = [
     topic: 'Cloud Native',
     solutions: [
       "Don't hesitate. Running your forklift migration in the cloud is not cloud native. Using managed services is.",
-      'Start with the lowest-friction components. Like anything running on bare metal after the forklift that has a managed service equivalent.',
+      'Start with the lowest-friction components. Like anything running on a provisioned VM after the forklift that has a managed service equivalent.',
       "Either migrate something to a managed service, or optimize something that's already native. But please not both at the same time."
     ]
   },
@@ -178,14 +167,12 @@ function TestimonialCard(props: TestimonialCardProps) {
   );
 }
 
-function HeroCard(heroCardProps: HeroCardProps) {
-  const { heading, blurb } = heroCardProps;
-
+function ServiceCard(props: ServiceCardProps) {
   return (
     <InfoCard>
       <VStack spacing={2} align="stretch">
-        <Heading size="md">{heading}</Heading>
-        {blurb.map((t) => (
+        <Heading size="md">{props.heading}</Heading>
+        {props.blurb.map((t) => (
           <Text>{t}</Text>
         ))}
       </VStack>
@@ -216,13 +203,11 @@ function QuestionCard(questionCardProps: QuestionCardProps) {
 }
 
 function SolutionCard(solutionCardProps: SolutionCardProps) {
-  const { topic, solutions } = solutionCardProps;
-
   return (
     <InfoCard>
       <VStack spacing={4} align="stretch">
-        <Heading size="md">{topic}</Heading>
-        {solutions.map((t) => (
+        <Heading size="md">{solutionCardProps.topic}</Heading>
+        {solutionCardProps.solutions.map((t) => (
           <Grid templateColumns="repeat(12, 1fr)">
             <GridItem>
               <CheckIcon color="green.500" />
@@ -237,73 +222,143 @@ function SolutionCard(solutionCardProps: SolutionCardProps) {
   );
 }
 
-function HeroGrid() {
+function ServicesGrid() {
   return (
-    <Flex>
-      <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={10}>
-        {hero.map((cardInfo, index) => (
-          <HeroCard {...cardInfo} />
-        ))}
-      </SimpleGrid>
-    </Flex>
+    <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={10}>
+      <InfoCard>
+        <Flex>
+          <Spacer />
+          <Image
+            src="https://d1ckzwk0wp36d2.cloudfront.net/desk3.jpeg"
+            fit="scale-down"
+            maxWidth="sm"
+          />
+          <Spacer />
+        </Flex>
+      </InfoCard>
+      {services.map((cardInfo, index) => (
+        <ServiceCard {...cardInfo} />
+      ))}
+    </SimpleGrid>
   );
 }
 
 function TestimonialGrid() {
   return (
-    <Flex>
-      <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={'10'} mx={'auto'}>
-        {testimonials.map((cardInfo, index) => (
-          <TestimonialCard {...cardInfo} />
-        ))}
-      </SimpleGrid>
-    </Flex>
+    <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={10} mx={'auto'}>
+      {testimonials.map((cardInfo, index) => (
+        <TestimonialCard {...cardInfo} />
+      ))}
+      <InfoCard>
+        <Flex>
+          <Spacer />
+          <Image
+            src="https://d1ckzwk0wp36d2.cloudfront.net/desk3.jpeg"
+            fit="scale-down"
+            maxWidth="sm"
+          />
+          <Spacer />
+        </Flex>
+      </InfoCard>
+    </SimpleGrid>
   );
 }
 
 function QuestionGrid() {
   return (
-    <Flex>
-      <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={'10'} mx={'auto'}>
-        {questions.map((cardInfo, index) => (
-          <QuestionCard {...cardInfo} />
-        ))}
-      </SimpleGrid>
-    </Flex>
+    <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={10} mx={'auto'}>
+      {questions.slice(0, 3).map((cardInfo, index) => (
+        <QuestionCard {...cardInfo} />
+      ))}
+      <InfoCard>
+        <Flex>
+          <Spacer />
+          <Image
+            src="https://d1ckzwk0wp36d2.cloudfront.net/bench.jpeg"
+            fit="scale-down"
+            maxWidth="sm"
+          />
+          <Spacer />
+        </Flex>
+      </InfoCard>
+      {questions.slice(3, 6).map((cardInfo, index) => (
+        <QuestionCard {...cardInfo} />
+      ))}
+    </SimpleGrid>
   );
 }
 
 function SolutionGrid() {
   return (
-    <Flex>
-      <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={'10'} mx={'auto'}>
-        {solutions.map((cardInfo, index) => (
-          <SolutionCard {...cardInfo} />
-        ))}
-      </SimpleGrid>
-    </Flex>
+    <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={10} mx={'auto'}>
+      {solutions.map((cardInfo, index) => (
+        <SolutionCard {...cardInfo} />
+      ))}
+    </SimpleGrid>
   );
+}
+
+function Splash() {
+  return (
+    <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={10} >
+      <VStack align="stretch" spacing={10}>
+        <InfoCard>
+          <VStack spacing={10} >
+            <Heading>Technical evaluation</Heading>
+            <Heading>Tailored to purpose</Heading>
+            <Heading>On your schedule</Heading>
+          </VStack>
+        </InfoCard>
+        <InfoCard>
+          <VStack spacing={10}>
+            <Heading>Nowhere to hide</Heading>
+            <Heading>Brutally honest</Heading>
+            <Heading>Actionable</Heading>
+          </VStack>
+        </InfoCard>
+      </VStack>
+      <InfoCard>
+        <Flex>
+          <Spacer />
+          <Image
+            src="https://d1ckzwk0wp36d2.cloudfront.net/waterfront.jpeg"
+            fit="scale-down"
+            maxWidth="sm"
+          />
+          <Spacer />
+        </Flex>
+      </InfoCard>
+    </SimpleGrid>
+  )
 }
 
 function IndexPage() {
   return (
     <Container maxWidth="100%" p={0} mt={10}>
-      <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={'10'} mx={'auto'}>
-        <Heading>Nowhere-to-Hide Technical Evaluation</Heading>
-        <Heading>On your terms</Heading>
-        <Heading>On your schedule</Heading>
-      </SimpleGrid>
-      <VStack spacing="10" maxWidth="100%"> 
-        <Divider />
-        <HeroGrid />
-        <Heading>People Say Nice Things</Heading>
-        <TestimonialGrid />
-        <VStack>
+      <VStack spacing={10} maxWidth="100%" align="stretch">
+        <Splash />
+        <Heading>Services</Heading>
+        <ServicesGrid />
+        {/* <Heading>People Say Nice Things</Heading>
+        <TestimonialGrid /> */}
+        <VStack align="stretch">
           <Heading>Revealing Questions and Awkward Answers</Heading>
-          <Text>⚠️ = warning sign, ❌ = serious concern. (These really happened.)</Text>
+          <Text>⚠️ = warning sign<br />❌ = serious concern<br />(These really happened)</Text>
         </VStack>
         <QuestionGrid />
-        <Heading>Solutions</Heading>
+        <VStack align="stretch">
+          <Heading>Solutions</Heading>
+          <Text>Building on our core competency of Technical Due Diligence, we will work with you tirelessly
+            to make initiatives like the following successful. We are strongly opinionated but not dogmatic or arbitrary.
+          </Text>
+          <Text>For example, we leverage open source frameworks whenever we can. Competitive advantage is what you build 
+            on OSS with the time you save not building the foundation yourself. However, if you're modernizing legacy code
+            that has a strong "not invented here" bias, we're not going to make you use Spring Boot just because. Not at all.
+          </Text>
+          <Text>So we never "boil the ocean," believing that successful evolutions are always incremental and always deployable. We'll note that
+            doing so is often at least as hard as the task itself.
+          </Text>
+        </VStack>
         <SolutionGrid />
       </VStack>
     </Container>

@@ -35,12 +35,12 @@ const Layout = ({ children }) => {
         <Box my="4" as="main">
           {children}
         </Box>
-        <Divider />
+        <Divider  mt={20}/>
         <Flex as="footer" my="2">
           <Text fontSize="xs">
             © {new Date().getFullYear()}, Stephen Harrison Consulting, LLC
           </Text>
-          <Spacer />
+          <Spacer/>
           <Text fontSize="xs">
             Made with ❤️ by{' '}
             <Link href="https://www.linkedin.com/in/stephenharrison/">

@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     siteUrl: `https://handycomputerbloke.com`,
     title: `Stephen Harrison Consulting, LLC`,
-    description: `Catchy domain name. Sensible company name.`,
+    description: `Catchy domain name. Sensible company name. Results that delight.`,
     author: `stephen@harrison.org`
   },
   plugins: [

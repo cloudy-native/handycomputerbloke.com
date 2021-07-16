@@ -13,9 +13,9 @@ export default function InfoCard({ children }) {
     <Box
       w="100%"
       p={8}
-      boxShadow="xl"
+      boxShadow="md"
       borderWidth="1px"
-      borderRadius="lg"
+      borderRadius="md"
     >
       {children}
     </Box>

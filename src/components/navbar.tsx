@@ -14,18 +14,20 @@ function NavBar({ siteTitle, ...rest }) {
       </Heading>
       <Spacer />
       <HStack spacing={4}>
-        {/* <Link as={GatsbyLink} to="/help">Help</Link> */}
         <Link as={GatsbyLink} to="/" _hover={{ textDecor: 'none' }}>
           Home
         </Link>
         <Link as={GatsbyLink} to="/pricing" _hover={{ textDecor: 'none' }}>
-          Pricing
+          Pricing Guide
         </Link>
-        <Link as={GatsbyLink} to="/reports" _hover={{ textDecor: 'none' }}>
+        {/* <Link as={GatsbyLink} to="/reports" _hover={{ textDecor: 'none' }}>
           Samples
-        </Link>
+        </Link> */}
         <Link as={GatsbyLink} to="/about" _hover={{ textDecor: 'none' }}>
           About Us
+        </Link>
+        <Link as={GatsbyLink} to="/contact" _hover={{ textDecor: 'none' }}>
+          Contact Us
         </Link>
         <ThemeToggle />
       </HStack>

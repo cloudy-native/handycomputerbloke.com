@@ -18,6 +18,7 @@ interface PricePlan {
   tier: string;
   price: string;
   features: string[];
+  timeFrame: string;
 }
 
 const prices: PricePlan[] = [
@@ -29,7 +30,8 @@ const prices: PricePlan[] = [
       'Technical overview',
       'Software development process review',
       'Candid, actionable report'
-    ]
+    ],
+    timeFrame: "d"
   },
   {
     tier: 'Cloud Migration Planning',
@@ -39,7 +41,8 @@ const prices: PricePlan[] = [
       'Lowest-risk managed services migration',
       'Cost control tooling',
       'Cloud best practices'
-    ]
+    ],
+    timeFrame:""
   },
   {
     tier: 'Cloud Native Evolution',
@@ -49,7 +52,8 @@ const prices: PricePlan[] = [
       'Lowest-risk, highest-value managed services',
       'Planning milestones',
       'Cost estimation'
-    ]
+    ],
+    timeFrame:""
   },
   {
     tier: 'Process Modernization',
@@ -59,7 +63,8 @@ const prices: PricePlan[] = [
       'Gap analysis',
       'Best practice implementation',
       'Migration path'
-    ]
+    ],
+    timeFrame:""
   }
 ];
 
@@ -142,14 +147,14 @@ function EngagementItem(engagement: Engagement) {
   const { kind, steps } = engagement;
 
   return (
-    <VStack spacing={4} align="stretch" divider={<Divider />}>
-      <Heading>{kind}</Heading>
+    <VStack spacing={4} align="stretch" >
+      <Heading size="md">{kind}</Heading>
       {steps.map((step) => (
         <Grid templateColumns="repeat(12, 1fr)">
-          <GridItem colSpan={3}>
+          <GridItem colSpan={2}>
             <Text>{step.name}</Text>
           </GridItem>
-          <GridItem colSpan={9}>
+          <GridItem colSpan={10}>
             <OrderedList>
               {step.actions.map((action) => (
                 <ListItem>{action}</ListItem>
@@ -175,11 +180,12 @@ function EngagementList() {
 export default function PricingPage() {
   return (
     <Container maxWidth="100%" p={0} mt={10}>
-      <VStack spacing={10}>
-        <Heading>Engagement Pricing</Heading>
-        <PricingGrid />
-        <Heading>Methodology</Heading>
+      <VStack spacing={10} align="stretch">
+        <Heading>Typical Engagements and Pricing Guide</Heading>
+        <Text>Every engagement is unique and you chose which areas we dig into and how deep you want us to go. 
+          Having said that, there are common themes and patterns. Here are some of them.</Text>
         <EngagementList />
+        <PricingGrid />
       </VStack>
     </Container>
   );
