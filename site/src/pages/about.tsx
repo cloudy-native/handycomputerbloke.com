@@ -10,17 +10,17 @@ function AboutPage() {
     <>
       <SEO title="About" />
       <VStack spacing={4} align="stretch">
-        <Heading>About Us</Heading>
+        <Heading fontSize={'xl'}>About Us</Heading>
         <Flex>
           <Box w="60%">
-            <VStack spacing={4}>
+            <VStack spacing={4} align="stretch">
               <Text>
                 We've been designing, building, and running enterprise software for 30
                 years. The thrill of developing and deploying an application into production,
                 seeing it used, and watching it run without a hitch never gets old.
               </Text>
               <Text>
-                We've been around to see the complete story of many remarkable evolutions and disruptive leaps going way back. Message passing on mainframes
+                We've been around to see the complete story of many remarkable evolutions and the introduction of disruptive technologies going way back. Message passing on mainframes
                 was big in its day. We don't see mainframes anymore, but we have a deep understanding of event-driven architectures.
                 Handy for us, because that's a fundamental of cloud-native applications.
               </Text>
@@ -33,6 +33,7 @@ function AboutPage() {
                 We learned some closely related things along the way, including how to build blazing fast websites.
                 Like this one.
               </Text>
+              <Text>Also pictures. Like that one.</Text>
             </VStack>
           </Box>
           <Spacer />

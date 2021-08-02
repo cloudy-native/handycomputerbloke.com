@@ -26,9 +26,9 @@ function NavBar({ siteTitle, ...rest }) {
         <Link as={GatsbyLink} to="/about" _hover={{ textDecor: 'none' }}>
           About Us
         </Link>
-        <Link as={GatsbyLink} to="/contact" _hover={{ textDecor: 'none' }}>
+        {/* <Link as={GatsbyLink} to="/contact" _hover={{ textDecor: 'none' }}>
           Contact Us
-        </Link>
+        </Link> */}
         <ThemeToggle />
       </HStack>
     </Flex>

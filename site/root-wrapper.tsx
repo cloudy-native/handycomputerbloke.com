@@ -1,6 +1,6 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import React from 'react';
-import Layout from './components/layout';
+import Layout from './src/components/layout';
 
 const theme = extendTheme({
   fonts: {

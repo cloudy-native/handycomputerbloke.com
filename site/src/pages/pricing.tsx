@@ -3,16 +3,12 @@ import {
   Container,
   Grid,
   GridItem,
-  Heading,
-  SimpleGrid,
-  Text,
-  VStack,
-  OrderedList,
-  ListItem,
-  Divider
+  Heading, ListItem, OrderedList, Text,
+  VStack
 } from '@chakra-ui/react';
 import React from 'react';
 import InfoCard from '../components/info-card';
+import Matrix from '../components/matrix';
 
 interface PricePlan {
   tier: string;
@@ -42,7 +38,7 @@ const prices: PricePlan[] = [
       'Cost control tooling',
       'Cloud best practices'
     ],
-    timeFrame:""
+    timeFrame: ""
   },
   {
     tier: 'Cloud Native Evolution',
@@ -53,7 +49,7 @@ const prices: PricePlan[] = [
       'Planning milestones',
       'Cost estimation'
     ],
-    timeFrame:""
+    timeFrame: ""
   },
   {
     tier: 'Process Modernization',
@@ -64,7 +60,7 @@ const prices: PricePlan[] = [
       'Best practice implementation',
       'Migration path'
     ],
-    timeFrame:""
+    timeFrame: ""
   }
 ];
 
@@ -135,11 +131,11 @@ function PricingCard({ plan }) {
 
 function PricingGrid() {
   return (
-    <SimpleGrid columns={{ sm: 1, md: 2 }} spacing={'10'} mx={'auto'}>
+    <Matrix>
       {prices.map((plan) => (
         <PricingCard plan={plan} />
       ))}
-    </SimpleGrid>
+    </Matrix>
   );
 }
 
@@ -180,11 +176,11 @@ function EngagementList() {
 export default function PricingPage() {
   return (
     <Container maxWidth="100%" p={0} mt={10}>
-      <VStack spacing={10} align="stretch">
-        <Heading>Typical Engagements and Pricing Guide</Heading>
-        <Text>Every engagement is unique and you chose which areas we dig into and how deep you want us to go. 
+      <VStack spacing={4} align="stretch">
+        <Heading fontSize={'xl'}>Typical Engagements and Pricing Guide</Heading>
+        <Text>Every engagement is unique and you chose which areas we dig into and how deep you want us to go.
           Having said that, there are common themes and patterns. Here are some of them.</Text>
-        <EngagementList />
+        {/* <EngagementList /> */}
         <PricingGrid />
       </VStack>
     </Container>
