@@ -1,9 +1,17 @@
 import { CheckIcon } from '@chakra-ui/icons';
-import { Divider, Flex, Grid, GridItem, Heading, Image, SimpleGrid, Stack, Text, useBreakpointValue, VStack } from '@chakra-ui/react';
+import {
+  Box, Divider,
+  Flex,
+  Grid,
+  GridItem,
+  Heading, HStack, Link, SimpleGrid,
+  Stack,
+  Text, useBreakpointValue,
+  VStack
+} from '@chakra-ui/react';
 import React, { ReactElement } from 'react';
 import InfoCard from '../components/info-card';
 import Matrix from '../components/matrix';
-
 interface ServiceCardProps {
   heading: string;
   blurb: string[];
@@ -23,8 +31,8 @@ const services: ServiceCardProps[] = [
     blurb: [
       'This is conducting Due Diligence on yourself.',
       "Often, this comes about because you made or inherited a monolith and it's time to fix it.",
-      "We all migrate to the cloud in time. This might be the journey you're on and we will partner with you using low-risk, battle-hardened patterns.",
-      "We're honest. If your architecture is broken, we'll let you know. We'll be nice about it. But trust us."
+      "We're honest. If your architecture is broken, we'll let you know. We'll be nice about it. But trust us.",
+      "We'll tell you how to fix it. And help if you want."
     ]
   },
   {
@@ -32,7 +40,14 @@ const services: ServiceCardProps[] = [
     blurb: [
       "As seasoned, hands-on veterans of the software industry we know what makes things work. And of course what doesn't.",
       "We've taken components a company deems too risky to touch and reworked them to be less scary.",
-      'We never boil the ocean when we refactor legacy code. Instead, we spend the time it takes up front to plan incremental testable, deployable evolutions.'
+      'We never boil the ocean when we refactor legacy code. Instead, we spend the time it takes up front to plan incrementally testable, deployable evolutions.'
+    ]
+  },
+  {
+    heading: 'Cloud Adoption',
+    blurb: [
+      "You may be just starting out migrating to the cloud. Or you may be in the process and you think it could be going better. Perhaps you did a forklift from your data center and are wonder what's up with your bill.",
+      "Wherever you are in your cloud journey, we've got you covered."
     ]
   }
 ];
@@ -64,13 +79,16 @@ const questions: QuestionCardProps[] = [
   {
     question: "What's your unit test coverage?",
     answers: [
-      "It's really good in the [redacted] module but everything else we test manually.",
+      'We keep a good list of manual tests and use that.',
       'We can write code faster without them.'
     ]
   },
   {
-    question:
-      'Why is your AWS bill breakdown different to the architecture diagram you just showed us?',
+    question: "What's your CI and CD?",
+    answers: ["What's that?", 'Bob. Bob does the builds.']
+  },
+  {
+    question: 'Why is your AWS bill breakdown different to the architecture?',
     answers: ["We don't know."]
   }
 ];
@@ -110,7 +128,7 @@ const solutions: SolutionCardProps[] = [
 ];
 
 interface SplashCardProps {
-  splash: string[]
+  splash: string[];
 }
 
 const splashCards: SplashCardProps[] = [
@@ -120,7 +138,7 @@ const splashCards: SplashCardProps[] = [
   {
     splash: [`Proven expertise`, 'Politely candid', 'Always actionable']
   }
-]
+];
 
 function ServiceCard(props: ServiceCardProps) {
   return (
@@ -143,7 +161,9 @@ function QuestionCard(questionCardProps: QuestionCardProps) {
       <VStack spacing={2} align="stretch">
         <Grid templateColumns="repeat(12, 1fr)">
           <GridItem>Q:</GridItem>
-          <GridItem colSpan={11}><Text fontWeight="1000">{question}</Text></GridItem>
+          <GridItem colSpan={11}>
+            <Text fontWeight="1000">{question}</Text>
+          </GridItem>
         </Grid>
         <Divider />
         {answers.map((answer, index) => (
@@ -180,16 +200,8 @@ function SolutionCard(solutionCardProps: SolutionCardProps) {
 function ServicesGrid() {
   return (
     <Matrix>
-      {/* <Image
-        maxH={'xs'}
-        fit={'cover'}
-        align={'center'}
-        w={'100%'}
-        h={'100%'}
-        src={'https://d1ckzwk0wp36d2.cloudfront.net/desk2.jpeg'}
-      /> */}
       {services.map((cardInfo, index) => (
-        <ServiceCard key={index}{...cardInfo} />
+        <ServiceCard key={index} {...cardInfo} />
       ))}
     </Matrix>
   );
@@ -198,18 +210,7 @@ function ServicesGrid() {
 function QuestionGrid() {
   return (
     <Matrix>
-      {questions.slice(0, 3).map((cardInfo, index) => (
-        <QuestionCard key={index} {...cardInfo} />
-      ))}
-      <Image
-        maxH={'xs'}
-        fit={'cover'}
-        align={'center'}
-        w={'100%'}
-        h={'100%'}
-        src={'https://d1ckzwk0wp36d2.cloudfront.net/bench.jpeg'}
-      />
-      {questions.slice(3, 6).map((cardInfo, index) => (
+      {questions.map((cardInfo, index) => (
         <QuestionCard key={index} {...cardInfo} />
       ))}
     </Matrix>
@@ -222,52 +223,114 @@ function SolutionGrid() {
       {solutions.map((cardInfo, index) => (
         <SolutionCard key={index} {...cardInfo} />
       ))}
-      {/* <Image
-        maxH={'xs'}
-        fit={'cover'}
-        align={'center'}
-        w={'100%'}
-        h={'100%'}
-        src={'https://d1ckzwk0wp36d2.cloudfront.net/table.jpeg'}
-      /> */}
+    </Matrix>
+  );
+}
+
+interface TestimonialCardProps {
+  title: string;
+  quote: string;
+  name: string;
+  company: string;
+}
+
+const testimonials: TestimonialCardProps[] = [
+  {
+    title: 'How on Earth...',
+    quote: '... did they get all that in two days of due diligence?',
+    name: 'B G',
+    company: 'CTO, Acquired Company'
+  },
+  {
+    title: 'We did completed the deal...',
+    quote:
+      '... but with our eyes open [based on the] risks surfaced during the thorough technical due diligence.',
+    name: 'A S',
+    company: 'Partner, Private Equity'
+  },
+  {
+    title: 'We did not have to boil the ocean',
+    quote:
+      'We were able to start migrating to the cloud component by component. We engaged [Handy Computer Bloke] from the start and came out the other side experts!',
+    name: 'J B',
+    company: 'Architect, Cloud Late Bloomer'
+  }
+];
+
+const TestimonialAvatar = ({
+  name,
+  title
+}: {
+  name: string;
+  title: string;
+}) => {
+  return (
+    <HStack>
+      {/* <Avatar name={name} mb={2} /> */}
+      <Text fontSize={'sm'}>{title}</Text>
+    </HStack>
+  );
+};
+
+function TestimonialCard(testimonialCardProps: TestimonialCardProps) {
+  return (
+    <InfoCard>
+      <VStack spacing={4} align="stretch">
+        <TestimonialAvatar
+          name={testimonialCardProps.name}
+          title={testimonialCardProps.company}
+        />
+        <Divider />
+        <Heading size="md">{testimonialCardProps.title}</Heading>
+        <Text>{testimonialCardProps.quote}</Text>
+      </VStack>
+    </InfoCard>
+  );
+}
+
+function TestimonialsGrid() {
+  return (
+    <Matrix>
+      {testimonials.map((cardInfo, index) => (
+        <TestimonialCard key={index} {...cardInfo} />
+      ))}
     </Matrix>
   );
 }
 
 function SplashCard(props: SplashCardProps) {
   return (
-    <VStack
-      w="100%"
-      align={'stretch'}
-    >
-      {
-        props.splash.map((t, index) => <Text key={index} color={'white'} fontWeight={'bold'} fontSize={'6xl'}>{t}</Text>)
-      }
+    <VStack w="100%" align={'stretch'}>
+      {props.splash.map((t, index) => (
+        <Text key={index} color={'white'} fontWeight={'bold'} fontSize={'6xl'}>
+          {t}
+        </Text>
+      ))}
     </VStack>
-  )
+  );
 }
 
 function Splash() {
   return (
-    <Flex
-      h={'100vh'}
-      backgroundImage={'url(https://d1ckzwk0wp36d2.cloudfront.net/waterfront.jpeg)'}
-      backgroundSize={'cover'}
-    >
-      <VStack
-        w={'full'}
-        align={'flex-start'}
-        px={useBreakpointValue({ base: 10 })}
-        py={useBreakpointValue({ base: 20 })}
-        bgGradient={'linear(to-r, blackAlpha.700, transparent)'}
-      >
-        <SimpleGrid columns={{ base: 1 }} spacing={'36'}>
-          {
-            splashCards.map((splash, index) => <SplashCard key={index} {...splash} />)
-          }
-        </SimpleGrid>
-      </VStack>
-    </Flex >
+    <>
+      <Flex
+        h={'100vh'}
+        // backgroundImage={'url(https://images.unsplash.com/photo-1588665306984-d5c6f62224aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2238&q=80)'}
+        backgroundSize={'cover'}>
+        <VStack
+          w={'full'}
+          align={'flex-start'}
+          px={useBreakpointValue({ base: 10 })}
+          py={useBreakpointValue({ base: 20 })}
+          bgGradient={'linear(to-r, blackAlpha.800, blackAlpha.100)'}>
+          <SimpleGrid columns={{ base: 1 }} spacing={'36'}>
+            {splashCards.map((splash, index) => (
+              <SplashCard key={index} {...splash} />
+            ))}
+          </SimpleGrid>
+        </VStack>
+      </Flex>
+    </>
   );
 }
 
@@ -298,24 +361,28 @@ function IndexPage() {
   return (
     <VStack spacing={10} maxWidth="100%" align="stretch">
       <Splash />
+      <Divider />
+      <Stack as={Box} textAlign={'center'} spacing={2}>
+        <Text fontSize={'2xl'}>
+          We build on our core competency of Technical Due Diligence.
+        </Text>
+        <Text fontSize={'2xl'}>We work quickly and efficiently.</Text>
+        <Text fontSize={'2xl'}>
+          We have strong opinions, but are not dogmatic or arbitrary.
+        </Text>
+      </Stack>
+      <Divider />
       <Heading>Services</Heading>
       <ServicesGrid />
-      <Heading>Revealing Questions and Awkward Answers</Heading>
-      <QuestionGrid />
+      <Heading>What people say</Heading>
+      <TestimonialsGrid />
       <VStack align="stretch">
-        <Heading>Common Solutions</Heading>
-        <Text>Building on our core competency of Technical Due Diligence, we will work with you tirelessly
-          to make initiatives like the following successful. We are strongly opinionated but not dogmatic or arbitrary.
-        </Text>
-        <Text>For example, we leverage open source frameworks whenever we can. Competitive advantage is what you build
-          on OSS with the time you save not building the foundation yourself. However, if you're modernizing legacy code
-          that has a strong "not invented here" bias, we're not going to make you use Spring Boot just because. Not at all.
-        </Text>
-        <Text>So we never "boil the ocean," believing that successful evolutions are always incremental and always deployable. We'll note that
-          doing so is often at least as hard as the task itself.
-        </Text>
+        <Heading>Revealing Questions and Awkward Answers</Heading>
+        <Text>From the archives...</Text>
       </VStack>
-      <SolutionGrid />
+      <QuestionGrid />
+      {/* <Heading>Common Solutions</Heading>
+      <SolutionGrid /> */}
     </VStack>
   );
 }

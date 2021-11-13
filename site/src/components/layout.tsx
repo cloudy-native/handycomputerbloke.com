@@ -29,18 +29,18 @@ const Layout = ({ children }) => {
   return (
     <>
       <Container maxWidth="6xl">
-        <NavBar my="4" siteTitle={data.site.siteMetadata?.title || `Title`} />
-        <Text fontSize="sm">{data.site.siteMetadata?.description}</Text>
+        <NavBar my="6" siteTitle={data.site.siteMetadata?.title || `Title`} />
+        <Text fontSize="lg">{data.site.siteMetadata?.description}</Text>
         <Divider mt={4} />
         <Box my="4" as="main">
           {children}
         </Box>
-        <Divider  mt={20}/>
+        <Divider mt={20} />
         <Flex as="footer" my="2">
           <Text fontSize="xs">
-            © {new Date().getFullYear()}, Stephen Harrison Consulting, LLC
+            © {new Date().getFullYear()}, Stephen Harrison, Handy Computer Bloke
           </Text>
-          <Spacer/>
+          <Spacer />
           <Text fontSize="xs">
             Made with ❤️ by{' '}
             <Link href="https://www.linkedin.com/in/stephenharrison/">

@@ -18,17 +18,11 @@ function NavBar({ siteTitle, ...rest }) {
           Home
         </Link>
         <Link as={GatsbyLink} to="/pricing" _hover={{ textDecor: 'none' }}>
-          Pricing Guide
+          Engagements
         </Link>
-        {/* <Link as={GatsbyLink} to="/reports" _hover={{ textDecor: 'none' }}>
-          Samples
-        </Link> */}
         <Link as={GatsbyLink} to="/about" _hover={{ textDecor: 'none' }}>
           About Us
         </Link>
-        {/* <Link as={GatsbyLink} to="/contact" _hover={{ textDecor: 'none' }}>
-          Contact Us
-        </Link> */}
         <ThemeToggle />
       </HStack>
     </Flex>

@@ -1,9 +1,9 @@
 {
   "name": "handycomputerbloke",
   "private": true,
-  "description": "The website of Stephen Harrison Consulting, LLC",
+  "description": "The website of Handy Computer Bloke",
   "version": "0.1.0",
-  "author": "Stephen Harrison <stephen@harrison.org>",
+  "author": "Stephen Harrison <stephen@handycomputerbloke.com>",
   "dependencies": {
     "@chakra-ui/gatsby-plugin": "^2.0.1",
     "@chakra-ui/icons": "^1.0.13",
@@ -41,7 +41,6 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "generate": "ts-node ./src/tools/generate-managed-policy-metadata.ts && ./scripts/generate-action-metadata.sh && ./scripts/generate-service-metadata.sh",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {

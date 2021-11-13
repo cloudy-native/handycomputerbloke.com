@@ -14,7 +14,7 @@ export default function HTML(props) {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-            window.$crisp=[];window.CRISP_WEBSITE_ID="6ebea7d5-9463-43ce-a3b8-8cd759dedc20";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+            window.$crisp=[];window.CRISP_WEBSITE_ID="c66b9213-a939-4c3c-bba3-04ba77925d53";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
         `
           }}
         />

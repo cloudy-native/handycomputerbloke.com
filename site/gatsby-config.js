@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
     siteUrl: `https://handycomputerbloke.com`,
-    title: `Stephen Harrison Consulting, LLC`,
-    description: `Catchy domain name. Sensible company name. Results that delight.`,
+    title: `Due Diligence by Handy Computer Bloke`,
+    description: `Catchy domain name. Sensible company. Results that delight.`,
     author: `stephen@harrison.org`
   },
   plugins: [
