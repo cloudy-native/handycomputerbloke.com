@@ -21,7 +21,7 @@ const services: ServiceCardProps[] = [
   {
     heading: 'Technical Due Diligence',
     blurb: [
-      "You're the Due Diligence Team looking at a software company.",
+      "You're the Due Diligence Team looking at a target software company.",
       "You need help with the technical part and that's where we come in. We conduct a thorough, nowhere-to-hide technical evaluation.",
       'Our reports are always as candid as they are actionable.'
     ]
