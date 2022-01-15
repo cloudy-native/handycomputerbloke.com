@@ -1,95 +1,100 @@
-import { StarIcon } from '@chakra-ui/icons';
+import { StarIcon } from '@chakra-ui/icons'
 import {
-  Container,
+  Box,
+  chakra,
+  Divider,
   Grid,
   GridItem,
   Heading,
-  ListItem,
-  OrderedList,
+  SimpleGrid,
+  Stat,
+  StatLabel,
+  StatNumber,
   Text,
-  VStack
-} from '@chakra-ui/react';
-import React from 'react';
-import InfoCard from '../components/info-card';
-import Matrix from '../components/matrix';
+  useColorModeValue,
+  VStack,
+} from '@chakra-ui/react'
+import React from 'react'
+import InfoCard from '../components/info-card'
+import Matrix from '../components/matrix'
 
 interface PricePlan {
-  tier: string;
-  price: string;
-  features: string[];
+  tier: string
+  price: string
+  features: string[]
 }
 
 const prices: PricePlan[] = [
   {
     tier: 'Due Diligence',
-    price: '$1,250 / day',
+    price: '$1,650 / day',
     features: [
       'Architecture deep dive',
       'Technical overview',
       'Software development process review',
-      'Candid, actionable report'
-    ]
+      'Candid, actionable report',
+    ],
   },
   {
     tier: 'Cloud Migration Planning',
-    price: '$1,250 / day',
+    price: '$1,650 / day',
     features: [
       'Deeper architecture analysis',
       'Lowest-risk managed services migration',
       'Cost control tooling',
-      'Cloud best practices'
-    ]
+      'Cloud best practices',
+    ],
   },
   {
     tier: 'Cloud Migration Groundwork',
-    price: '$1,250 / day',
+    price: '$1,650 / day',
     features: [
       'Create accounts and implement single sign on',
       'Connect observability tools',
       'Set up cost controls',
       'Implement configuration governance',
-      'Establish data center connectivity'
-    ]
+      'Establish data center connectivity',
+    ],
   },
   {
     tier: 'Cloud Migration Execution',
-    price: '$1,250 / day',
+    price: '$1,650 / day',
     features: [
       'Decouple the first service from the monolith, including databases',
       "Migrate the service as-is: Don't worry about cloud-native yet",
       'Decouple and deploy piece by piece at your own pace, mirroring Data Center',
-      "You're in the cloud and it looks like your data center. Lock the colo cage and walk away"
-    ]
+      "You're in the cloud and it looks like your data center. Lock the colo cage and walk away",
+    ],
   },
   {
     tier: 'Cloud Native Evolution',
-    price: '$1,250 / day',
+    price: '$1,650 / day',
     features: [
       'Cloud architecture appraisal',
       'Migrate legacy services to lowest-risk, highest-value managed services',
       'Planning milestones',
-      'Cost estimation'
-    ]
+      'Cost estimation',
+    ],
   },
   {
     tier: 'Process Modernization',
-    price: '$1,250 / day',
+    price: '$1,650 / day',
     features: [
       'End state definition, including Infrastructure-as-Code, CI/CD, Agile process tooling',
       'Gap analysis',
       'Migration path',
-      'Best practice implementation'
-    ]
-  }
-];
+      'Best practice implementation',
+    ],
+  },
+]
 
 interface EngagementStep {
-  name: string;
-  actions: string[];
+  name: string
+  actions: string[]
 }
 
 function PricingCard({ plan }) {
-  const { tier, price, features } = plan;
+  const { tier, price, features } = plan
 
   return (
     <InfoCard>
@@ -110,7 +115,7 @@ function PricingCard({ plan }) {
         </VStack>
       </VStack>
     </InfoCard>
-  );
+  )
 }
 
 function PricingGrid() {
@@ -120,14 +125,49 @@ function PricingGrid() {
         <PricingCard plan={plan} />
       ))}
     </Matrix>
-  );
+  )
 }
 
-export default function PricingPage() {
+interface StatsCardProps {
+  title: string
+  stat: number
+}
+
+const statsCards: StatsCardProps[] = [
+  { title: 'Due Diligence', stat: 9 },
+  { title: 'Cloud Migration Planning', stat: 4 },
+  { title: 'Cloud Migration Execution', stat: 3 },
+  { title: 'Cloud Native Evolution', stat: 3 },
+]
+
+function StatsCard(props: StatsCardProps) {
+  const { title, stat } = props
+
+  return (
+    <InfoCard>
+      <Stat>
+        <StatLabel isTruncated>{title}</StatLabel>
+        <StatNumber>{stat}</StatNumber>
+      </Stat>
+    </InfoCard>
+  )
+}
+
+function StatsGrid() {
+  return (
+    <Matrix columns={{ sm: 1, md: 4 }}>
+      {statsCards.map((card, index) => (
+        <StatsCard title={card.title} stat={card.stat} />
+      ))}
+    </Matrix>
+  )
+}
+
+export default function EngagementsPage() {
   return (
     <VStack spacing={4} align="stretch">
-      <Heading fontSize={'xl'}>Engagement Pricing</Heading>
+      <StatsGrid />
       <PricingGrid />
     </VStack>
-  );
+  )
 }

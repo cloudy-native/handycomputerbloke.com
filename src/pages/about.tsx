@@ -1,26 +1,40 @@
-import { EmailIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, FormControl, FormLabel, Heading, Input, Link, Spacer, Stack, Text, Textarea, useToast, VStack } from '@chakra-ui/react';
-import React, { useState } from 'react';
-import InfoCard from '../components/info-card';
-import SEO from '../components/seo';
+import { EmailIcon } from '@chakra-ui/icons'
+import {
+  Box,
+  Button,
+  Flex,
+  FormControl,
+  FormLabel,
+  Heading,
+  Input,
+  Spacer,
+  Stack,
+  Text,
+  Textarea,
+  useToast,
+  VStack,
+} from '@chakra-ui/react'
+import React, { useState } from 'react'
+import InfoCard from '../components/info-card'
+import SEO from '../components/seo'
 
 function AboutPage() {
-  const [formStatus, setFormStatus] = useState(false);
+  const [formStatus, setFormStatus] = useState(false)
   const [query, setQuery] = useState({
     email: '',
-    message: ''
-  });
-  const toast = useToast();
+    message: '',
+  })
+  const toast = useToast()
 
   const handleChange = () => (e) => {
-    console.log(e);
-    const name = e.target.name;
-    const value = e.target.value;
+    console.log(e)
+    const name = e.target.name
+    const value = e.target.value
     setQuery((prevState) => ({
       ...prevState,
-      [name]: value
-    }));
-  };
+      [name]: value,
+    }))
+  }
 
   return (
     <>
@@ -59,7 +73,13 @@ function AboutPage() {
           <Box w="35%">
             <Stack spacing={4} align={'stretch'}>
               <Heading fontSize={'lg'}>Contact us</Heading>
-              <Text>Email us. Or chat with us below.</Text>
+              <Text>
+                Email{' '}
+                <a href="mailto:info@handycomputerbloke">
+                  <Text as="kbd">info@handycomputerbloke.com</Text>
+                </a>{' '}
+                or chat below.
+              </Text>
               <Stack spacing={10} mx={'auto'} maxW={'lg'}>
                 <InfoCard>
                   <Stack
@@ -67,7 +87,8 @@ function AboutPage() {
                     spacing={4}
                     onChange={handleChange}
                     action={'https://api.slapform.com/SN5XGo5dz'}
-                    method={'POST'}>
+                    method={'POST'}
+                  >
                     <FormControl id="email" isRequired>
                       <FormLabel>Your email</FormLabel>
                       <Input type="email" />
@@ -76,17 +97,21 @@ function AboutPage() {
                       <FormLabel>Your message</FormLabel>
                       <Textarea placeholder="How can we help you?" />
                     </FormControl>
-                    <Button type={'submit'} leftIcon={<EmailIcon />} colorScheme="blue">
-                      Email
+                    <Button
+                      type={'submit'}
+                      leftIcon={<EmailIcon />}
+                      colorScheme="blue"
+                    >
+                      Send
                     </Button>
                     {formStatus
                       ? toast({
-                        title: 'Message sent.',
-                        description: "We'll get back to you promptly.",
-                        status: 'success',
-                        duration: 5000,
-                        isClosable: true
-                      })
+                          title: 'Message sent.',
+                          description: "We'll get back to you promptly.",
+                          status: 'success',
+                          duration: 5000,
+                          isClosable: true,
+                        })
                       : ''}
                   </Stack>
                 </InfoCard>
@@ -95,11 +120,16 @@ function AboutPage() {
           </Box>
         </Flex>
       </VStack>
-      <Text mt={10} fontSize="xs">Photo credits</Text>
-      <Text fontSize="xs"><a href="https://unsplash.com/@martijnschreiner?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">martijn schreiner</a> on <a href="https://unsplash.com/s/photos/microscope?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></Text>
-
+      <Text mt={10} fontSize="xs">
+        Photo credits
+      </Text>
+      <Text fontSize="xs">
+        <a href="https://unsplash.com/photos/XJRMyYMa90Q">Microscope</a>
+        {' by '}
+        <a href="https://unsplash.com/@martijnschreiner">martijn schreiner</a>
+      </Text>
     </>
-  );
+  )
 }
 
-export default AboutPage;
+export default AboutPage

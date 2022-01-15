@@ -17,7 +17,7 @@ function NavBar({ siteTitle, ...rest }) {
         <Link as={GatsbyLink} to="/" _hover={{ textDecor: 'none' }}>
           Home
         </Link>
-        <Link as={GatsbyLink} to="/pricing" _hover={{ textDecor: 'none' }}>
+        <Link as={GatsbyLink} to="/engagements" _hover={{ textDecor: 'none' }}>
           Engagements
         </Link>
         <Link as={GatsbyLink} to="/about" _hover={{ textDecor: 'none' }}>

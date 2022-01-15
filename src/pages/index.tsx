@@ -1,20 +1,49 @@
-import { CheckIcon } from '@chakra-ui/icons';
+import { CheckIcon } from '@chakra-ui/icons'
 import {
-  Box, Divider,
+  Avatar,
+  Box,
+  Divider,
   Flex,
   Grid,
   GridItem,
-  Heading, HStack, Link, SimpleGrid,
+  Heading,
+  HStack,
+  SimpleGrid,
   Stack,
-  Text, useBreakpointValue,
-  VStack
-} from '@chakra-ui/react';
-import React, { ReactElement } from 'react';
-import InfoCard from '../components/info-card';
-import Matrix from '../components/matrix';
+  Text,
+  useBreakpointValue,
+  VStack,
+  Wrap,
+  WrapItem,
+} from '@chakra-ui/react'
+import React, { ReactElement } from 'react'
+import InfoCard from '../components/info-card'
+import Matrix from '../components/matrix'
+
 interface ServiceCardProps {
-  heading: string;
-  blurb: string[];
+  heading: string
+  blurb: string[]
+}
+
+interface QuestionCardProps {
+  question: string
+  answers: string[]
+}
+
+interface SolutionCardProps {
+  topic: string
+  solutions: string[]
+}
+
+interface SplashCardProps {
+  splash: string[]
+}
+
+interface TestimonialCardProps {
+  title: string
+  quote: string
+  company: string
+  avatar: string
 }
 
 const services: ServiceCardProps[] = [
@@ -23,8 +52,8 @@ const services: ServiceCardProps[] = [
     blurb: [
       "You're the Due Diligence Team looking at a target software company.",
       "You need help with the technical part and that's where we come in. We conduct a thorough, nowhere-to-hide technical evaluation.",
-      'Our reports are always as candid as they are actionable.'
-    ]
+      'Our reports are always as candid as they are actionable.',
+    ],
   },
   {
     heading: 'Architecture Deep Dive',
@@ -32,71 +61,66 @@ const services: ServiceCardProps[] = [
       'This is conducting Due Diligence on yourself.',
       "Often, this comes about because you made or inherited a monolith and it's time to fix it.",
       "We're honest. If your architecture is broken, we'll let you know. We'll be nice about it. But trust us.",
-      "We'll tell you how to fix it. And help if you want."
-    ]
+      "We'll tell you how to fix it. And help if you want.",
+    ],
   },
   {
     heading: 'Technical Debt Remediation',
     blurb: [
       "As seasoned, hands-on veterans of the software industry we know what makes things work. And of course what doesn't.",
       "We've taken components a company deems too risky to touch and reworked them to be less scary.",
-      'We never boil the ocean when we refactor legacy code. Instead, we spend the time it takes up front to plan incrementally testable, deployable evolutions.'
-    ]
+      'We never boil the ocean when we refactor legacy code. Instead, we spend the time it takes up front to plan incrementally testable, deployable evolutions.',
+    ],
   },
   {
     heading: 'Cloud Adoption',
     blurb: [
-      "You may be just starting out migrating to the cloud. Or you may be in the process and you think it could be going better. Perhaps you did a forklift from your data center and are wonder what's up with your bill.",
-      "Wherever you are in your cloud journey, we've got you covered."
-    ]
-  }
-];
-
-interface QuestionCardProps {
-  question: string;
-  answers: string[];
-}
+      "You may be just starting your migration to the cloud. Or you may be in the process and you think it could be going better. Perhaps you did a forklift from your data center and are wonder what's up with your bill.",
+      "Wherever you are in your cloud journey, we've got you covered.",
+    ],
+  },
+]
 
 const questions: QuestionCardProps[] = [
   {
     question: "Where's your architecture diagram?",
     answers: [
       'Let me send you the PowerPoint.',
-      "Here it is, but it's very out of date."
-    ]
+      "Here it is, but it's very out of date.",
+    ],
   },
   {
     question: 'Can I see a Pull Request?',
-    answers: ["We don't use PRs.", `No you can't.`]
+    answers: [
+      "We don't use PRs.",
+      `No you can't.`,
+      'We use PRs but merging is not gated on reviews.',
+    ],
   },
   {
     question: 'How do you plan sprints?',
     answers: [
       "Not sure who has it right now, but there's a spreadsheet.",
-      'We invented our own version of Agile and have one long sprint really.'
-    ]
+      'We invented our own version of Agile and have one long sprint really.',
+    ],
   },
   {
     question: "What's your unit test coverage?",
     answers: [
       'We keep a good list of manual tests and use that.',
-      'We can write code faster without them.'
-    ]
+      'We can write code faster without them.',
+      `We don't know`,
+    ],
   },
   {
     question: "What's your CI and CD?",
-    answers: ["What's that?", 'Bob. Bob does the builds.']
+    answers: ["What's that?", 'Neal. Neal does the builds.'],
   },
   {
     question: 'Why is your AWS bill breakdown different to the architecture?',
-    answers: ["We don't know."]
-  }
-];
-
-interface SolutionCardProps {
-  topic: string;
-  solutions: string[];
-}
+    answers: ["We don't know."],
+  },
+]
 
 const solutions: SolutionCardProps[] = [
   {
@@ -104,16 +128,16 @@ const solutions: SolutionCardProps[] = [
     solutions: [
       "It's OK to start with forklift because it's low risk and you mostly have the skills already.",
       "Think about cloud-native as a fast follow. But please think about it. That's our specialty.",
-      'Pick the same cloud provider everyone else uses.'
-    ]
+      'Pick the same cloud provider everyone else uses.',
+    ],
   },
   {
     topic: 'Cloud Native',
     solutions: [
       "Don't hesitate. Running your forklift migration in the cloud is not cloud native. Using managed services is.",
       'Start with the lowest-friction components. Like anything running on a provisioned VM after the forklift that has a managed service equivalent.',
-      "Either migrate something to a managed service, or optimize something that's already native. But please not both at the same time."
-    ]
+      "Either migrate something to a managed service, or optimize something that's already native. But please not both at the same time.",
+    ],
   },
   {
     topic: 'Production Readiness',
@@ -122,39 +146,66 @@ const solutions: SolutionCardProps[] = [
       'Observe them.',
       'Define and follow a mandatory "Definition of Done."',
       'Eliminate manual production access by default.',
-      'Use Infrastructure-as-Code (IaC) and deploy automatically.'
-    ]
-  }
-];
-
-interface SplashCardProps {
-  splash: string[];
-}
+      'Use Infrastructure-as-Code (IaC) and deploy automatically.',
+    ],
+  },
+]
 
 const splashCards: SplashCardProps[] = [
   {
-    splash: ['Technical evaluation', 'Tailored for you', 'Nowhere to hide']
+    splash: ['Technical evaluation', 'Tailored for you', 'Nowhere to hide'],
   },
   {
-    splash: [`Proven expertise`, 'Politely candid', 'Always actionable']
-  }
-];
+    splash: [`Proven expertise`, 'Politely candid', 'Always actionable'],
+  },
+]
+
+const testimonials: TestimonialCardProps[] = [
+  {
+    title: 'How on Earth...',
+    quote: '... did they get all that in two days of due diligence?',
+    company: 'CTO, Target Company',
+    avatar: 'https://www.w3schools.com/howto/img_avatar.png',
+  },
+  {
+    title: 'We completed the deal',
+    quote:
+      'But with our eyes open [based on the] risks surfaced during the thorough technical due diligence.',
+    company: 'Partner, Private Equity',
+    avatar: 'https://www.w3schools.com/howto/img_avatar2.png',
+  },
+  {
+    title: 'The best explainers we know',
+    quote:
+      'It was a pleasure watch the team explain technical concerns so we understood the implications.',
+    company: 'Associate, Venture Capital',
+    avatar: 'https://www.w3schools.com/w3images/avatar6.png',
+  },
+  {
+    title: 'We did not have to boil the ocean',
+    quote:
+      'We were able to start migrating to the cloud component by component. We engaged [Handy Computer Bloke] from the start and came out the other side experts!',
+    company: 'Architect, Public Cloud Late Bloomer',
+    avatar: 'https://www.w3schools.com/w3images/avatar2.png',
+  },
+]
 
 function ServiceCard(props: ServiceCardProps) {
   return (
     <InfoCard>
       <VStack spacing={2} align="stretch">
         <Heading size="md">{props.heading}</Heading>
+        <Divider />
         {props.blurb.map((t, index) => (
           <Text key={index}>{t}</Text>
         ))}
       </VStack>
     </InfoCard>
-  );
+  )
 }
 
 function QuestionCard(questionCardProps: QuestionCardProps) {
-  const { question, answers } = questionCardProps;
+  const { question, answers } = questionCardProps
 
   return (
     <InfoCard>
@@ -174,7 +225,7 @@ function QuestionCard(questionCardProps: QuestionCardProps) {
         ))}
       </VStack>
     </InfoCard>
-  );
+  )
 }
 
 function SolutionCard(solutionCardProps: SolutionCardProps) {
@@ -194,7 +245,7 @@ function SolutionCard(solutionCardProps: SolutionCardProps) {
         ))}
       </VStack>
     </InfoCard>
-  );
+  )
 }
 
 function ServicesGrid() {
@@ -204,7 +255,7 @@ function ServicesGrid() {
         <ServiceCard key={index} {...cardInfo} />
       ))}
     </Matrix>
-  );
+  )
 }
 
 function QuestionGrid() {
@@ -214,7 +265,7 @@ function QuestionGrid() {
         <QuestionCard key={index} {...cardInfo} />
       ))}
     </Matrix>
-  );
+  )
 }
 
 function SolutionGrid() {
@@ -224,68 +275,33 @@ function SolutionGrid() {
         <SolutionCard key={index} {...cardInfo} />
       ))}
     </Matrix>
-  );
+  )
 }
 
-interface TestimonialCardProps {
-  title: string;
-  quote: string;
-  name: string;
-  company: string;
-}
-
-const testimonials: TestimonialCardProps[] = [
-  {
-    title: 'How on Earth...',
-    quote: '... did they get all that in two days of due diligence?',
-    name: 'B G',
-    company: 'CTO, Acquired Company'
-  },
-  {
-    title: 'We did completed the deal...',
-    quote:
-      '... but with our eyes open [based on the] risks surfaced during the thorough technical due diligence.',
-    name: 'A S',
-    company: 'Partner, Private Equity'
-  },
-  {
-    title: 'We did not have to boil the ocean',
-    quote:
-      'We were able to start migrating to the cloud component by component. We engaged [Handy Computer Bloke] from the start and came out the other side experts!',
-    name: 'J B',
-    company: 'Architect, Cloud Late Bloomer'
-  }
-];
-
-const TestimonialAvatar = ({
-  name,
-  title
-}: {
-  name: string;
-  title: string;
-}) => {
+const TestimonialAvatar = ({ props }: { props: TestimonialCardProps }) => {
   return (
     <HStack>
-      {/* <Avatar name={name} mb={2} /> */}
-      <Text fontSize={'sm'}>{title}</Text>
+      <Wrap>
+        <WrapItem>
+          <Avatar src={props.avatar} />
+        </WrapItem>
+      </Wrap>
+      <Text fontSize={'lg'}>{props.company}</Text>
     </HStack>
-  );
-};
+  )
+}
 
 function TestimonialCard(testimonialCardProps: TestimonialCardProps) {
   return (
     <InfoCard>
       <VStack spacing={4} align="stretch">
-        <TestimonialAvatar
-          name={testimonialCardProps.name}
-          title={testimonialCardProps.company}
-        />
+        <TestimonialAvatar props={testimonialCardProps} />
         <Divider />
         <Heading size="md">{testimonialCardProps.title}</Heading>
         <Text>{testimonialCardProps.quote}</Text>
       </VStack>
     </InfoCard>
-  );
+  )
 }
 
 function TestimonialsGrid() {
@@ -295,7 +311,7 @@ function TestimonialsGrid() {
         <TestimonialCard key={index} {...cardInfo} />
       ))}
     </Matrix>
-  );
+  )
 }
 
 function SplashCard(props: SplashCardProps) {
@@ -307,7 +323,7 @@ function SplashCard(props: SplashCardProps) {
         </Text>
       ))}
     </VStack>
-  );
+  )
 }
 
 function Splash() {
@@ -315,14 +331,18 @@ function Splash() {
     <>
       <Flex
         h={'100vh'}
-        // backgroundImage={'url(https://images.unsplash.com/photo-1588665306984-d5c6f62224aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2238&q=80)'}
-        backgroundSize={'cover'}>
+        backgroundImage={
+          'url(https://images.unsplash.com/photo-1588665306984-d5c6f62224aa?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2238&q=80)'
+        }
+        backgroundSize={'cover'}
+      >
         <VStack
           w={'full'}
           align={'flex-start'}
           px={useBreakpointValue({ base: 10 })}
           py={useBreakpointValue({ base: 20 })}
-          bgGradient={'linear(to-r, blackAlpha.800, blackAlpha.100)'}>
+          bgGradient={'linear(to-r, blackAlpha.800, blackAlpha.100)'}
+        >
           <SimpleGrid columns={{ base: 1 }} spacing={'36'}>
             {splashCards.map((splash, index) => (
               <SplashCard key={index} {...splash} />
@@ -331,13 +351,13 @@ function Splash() {
         </VStack>
       </Flex>
     </>
-  );
+  )
 }
 
 interface FeatureProps {
-  text: string;
-  iconBg: string;
-  icon?: ReactElement;
+  text: string
+  iconBg: string
+  icon?: ReactElement
 }
 
 const Feature = ({ text, icon, iconBg }: FeatureProps) => {
@@ -349,19 +369,19 @@ const Feature = ({ text, icon, iconBg }: FeatureProps) => {
         align={'center'}
         justify={'center'}
         rounded={'full'}
-        bg={iconBg}>
+        bg={iconBg}
+      >
         {icon}
       </Flex>
       <Text fontWeight={600}>{text}</Text>
     </Stack>
-  );
-};
+  )
+}
 
 function IndexPage() {
   return (
     <VStack spacing={10} maxWidth="100%" align="stretch">
       <Splash />
-      <Divider />
       <Stack as={Box} textAlign={'center'} spacing={2}>
         <Text fontSize={'2xl'}>
           We build on our core competency of Technical Due Diligence.
@@ -371,7 +391,6 @@ function IndexPage() {
           We have strong opinions, but are not dogmatic or arbitrary.
         </Text>
       </Stack>
-      <Divider />
       <Heading>Services</Heading>
       <ServicesGrid />
       <Heading>What people say</Heading>
@@ -384,7 +403,7 @@ function IndexPage() {
       {/* <Heading>Common Solutions</Heading>
       <SolutionGrid /> */}
     </VStack>
-  );
+  )
 }
 
-export default IndexPage;
+export default IndexPage

@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
           </Text>
           <Spacer />
           <Text fontSize="xs">
-            Made with ❤️ by{' '}
+            Made from scratch with ❤️ by{' '}
             <Link href="https://www.linkedin.com/in/stephenharrison/">
               Stephen Harrison <ExternalLinkIcon />
             </Link>
