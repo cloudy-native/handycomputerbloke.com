@@ -65,7 +65,7 @@ function AboutPage() {
               </Text>
               <Text>
                 We learned some closely related things along the way, including
-                how to build blazing fast websites. Like this one.
+                how to build blazing fast websites. Just like this one.
               </Text>
             </VStack>
           </Box>
