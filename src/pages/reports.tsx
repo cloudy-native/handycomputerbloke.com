@@ -1,6 +1,6 @@
-import { Box, Heading, Text, VStack, Divider } from '@chakra-ui/react';
-import React from 'react';
-import SEO from '../components/seo';
+import { Box, Heading, Text, VStack, Divider } from '@chakra-ui/react'
+import React from 'react'
+import SEO from '../components/seo'
 
 function ReportsPage() {
   return (
@@ -34,7 +34,7 @@ function ReportsPage() {
         </Box>
       </VStack>
     </>
-  );
+  )
 }
 
-export default ReportsPage;
+export default ReportsPage

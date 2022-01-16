@@ -3,7 +3,7 @@ module.exports = {
     siteUrl: `https://handycomputerbloke.com`,
     title: `Due Diligence by Handy Computer Bloke`,
     description: `Catchy domain name. Sensible company. Results that delight.`,
-    author: `stephen@harrison.org`
+    author: `stephen@harrison.org`,
   },
   plugins: [
     `@chakra-ui/gatsby-plugin`,
@@ -15,9 +15,9 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `./src/images/`
+        path: `./src/images/`,
       },
-      __key: 'images'
-    }
-  ]
-};
+      __key: 'images',
+    },
+  ],
+}

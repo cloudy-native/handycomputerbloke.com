@@ -95,7 +95,7 @@ function AboutPage() {
                     </FormControl>
                     <FormControl id="message">
                       <FormLabel>Your message</FormLabel>
-                      <Textarea placeholder="How can we help you?" />
+                      <Textarea />
                     </FormControl>
                     <Button
                       type={'submit'}

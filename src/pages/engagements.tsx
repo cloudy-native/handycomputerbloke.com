@@ -1,12 +1,8 @@
-import { StarIcon } from '@chakra-ui/icons'
+import { CheckIcon } from '@chakra-ui/icons'
 import {
-  Box,
-  chakra,
-  Divider,
   Grid,
   GridItem,
   Heading,
-  SimpleGrid,
   Stat,
   StatLabel,
   StatNumber,
@@ -18,15 +14,15 @@ import React from 'react'
 import InfoCard from '../components/info-card'
 import Matrix from '../components/matrix'
 
-interface PricePlan {
+interface PricingPlan {
   tier: string
   price: string
   features: string[]
 }
 
-const prices: PricePlan[] = [
+const dueDiligencePricingPlans: PricingPlan[] = [
   {
-    tier: 'Due Diligence',
+    tier: 'Techical Due Diligence',
     price: '$1,650 / day',
     features: [
       'Architecture deep dive',
@@ -35,6 +31,9 @@ const prices: PricePlan[] = [
       'Candid, actionable report',
     ],
   },
+]
+
+const cloudPricingPlans: PricingPlan[] = [
   {
     tier: 'Cloud Migration Planning',
     price: '$1,650 / day',
@@ -49,10 +48,10 @@ const prices: PricePlan[] = [
     tier: 'Cloud Migration Groundwork',
     price: '$1,650 / day',
     features: [
-      'Create accounts and implement single sign on',
+      'Create accounts, organization, and implement single sign-on',
+      'Implement security governance',
       'Connect observability tools',
       'Set up cost controls',
-      'Implement configuration governance',
       'Establish data center connectivity',
     ],
   },
@@ -61,9 +60,9 @@ const prices: PricePlan[] = [
     price: '$1,650 / day',
     features: [
       'Decouple the first service from the monolith, including databases',
-      "Migrate the service as-is: Don't worry about cloud-native yet",
+      "Migrate the service as-is: Don't worry about cloud-native just yet",
       'Decouple and deploy piece by piece at your own pace, mirroring Data Center',
-      "You're in the cloud and it looks like your data center. Lock the colo cage and walk away",
+      "You're in the cloud and it looks like your data center: Lock the colo cage and walk away",
     ],
   },
   {
@@ -71,9 +70,32 @@ const prices: PricePlan[] = [
     price: '$1,650 / day',
     features: [
       'Cloud architecture appraisal',
-      'Migrate legacy services to lowest-risk, highest-value managed services',
+      'Migrate legacy services to lowest-risk, highest-value public cloud managed services',
       'Planning milestones',
       'Cost estimation',
+    ],
+  },
+]
+
+const technicalTeamPricingPlans: PricingPlan[] = [
+  {
+    tier: 'Leveling Up Workshops',
+    price: '$1,650 / day',
+    features: [
+      'Introduction to public cloud',
+      'Coding best practices',
+      'Debugging skills',
+      'Learning a new framework or language',
+    ],
+  },
+  {
+    tier: 'Architecture Patterns',
+    price: '$1,650 / day',
+    features: [
+      'Event-driven for cloud-native architectures',
+      'Horizontal scaling',
+      'Resiliency and circuit breakers',
+      'Excellent non-function requirements (NFRs)',
     ],
   },
   {
@@ -88,11 +110,6 @@ const prices: PricePlan[] = [
   },
 ]
 
-interface EngagementStep {
-  name: string
-  actions: string[]
-}
-
 function PricingCard({ plan }) {
   const { tier, price, features } = plan
 
@@ -100,12 +117,14 @@ function PricingCard({ plan }) {
     <InfoCard>
       <VStack spacing={2} align="stretch">
         <Heading size="lg">{tier}</Heading>
-        <Text color="gray.500">{price}</Text>
+        <Text>{price}</Text>
         <VStack align="stretch">
           {features.map((feature) => (
             <Grid templateColumns="repeat(12, 1fr)">
               <GridItem>
-                <StarIcon color="green.500" />
+                <CheckIcon
+                  color={useColorModeValue('green.500', 'green.400')}
+                />
               </GridItem>
               <GridItem colSpan={11}>
                 <Text>{feature}</Text>
@@ -118,13 +137,16 @@ function PricingCard({ plan }) {
   )
 }
 
-function PricingGrid() {
+function PricingGrid({ heading, pricingPans }) {
   return (
-    <Matrix>
-      {prices.map((plan) => (
-        <PricingCard plan={plan} />
-      ))}
-    </Matrix>
+    <>
+      <Heading>{heading}</Heading>
+      <Matrix>
+        {pricingPans.map((plan) => (
+          <PricingCard plan={plan} />
+        ))}
+      </Matrix>
+    </>
   )
 }
 
@@ -134,30 +156,22 @@ interface StatsCardProps {
 }
 
 const statsCards: StatsCardProps[] = [
-  { title: 'Due Diligence', stat: 9 },
-  { title: 'Cloud Migration Planning', stat: 4 },
+  { title: 'Technical Due Diligence', stat: 9 },
   { title: 'Cloud Migration Execution', stat: 3 },
   { title: 'Cloud Native Evolution', stat: 3 },
+  { title: 'Leveling Up Workshops', stat: 2 },
 ]
-
-function StatsCard(props: StatsCardProps) {
-  const { title, stat } = props
-
-  return (
-    <InfoCard>
-      <Stat>
-        <StatLabel isTruncated>{title}</StatLabel>
-        <StatNumber>{stat}</StatNumber>
-      </Stat>
-    </InfoCard>
-  )
-}
 
 function StatsGrid() {
   return (
     <Matrix columns={{ sm: 1, md: 4 }}>
       {statsCards.map((card, index) => (
-        <StatsCard title={card.title} stat={card.stat} />
+        <InfoCard lightBackground="green.100" darkBackground="green.700">
+          <Stat>
+            <StatLabel isTruncated>{card.title}</StatLabel>
+            <StatNumber>{card.stat}</StatNumber>
+          </Stat>
+        </InfoCard>
       ))}
     </Matrix>
   )
@@ -166,8 +180,17 @@ function StatsGrid() {
 export default function EngagementsPage() {
   return (
     <VStack spacing={4} align="stretch">
+      <Heading>Engagements By the Numbers</Heading>
       <StatsGrid />
-      <PricingGrid />
+      <PricingGrid
+        heading="Due Diligence"
+        pricingPans={dueDiligencePricingPlans}
+      />
+      <PricingGrid heading="Cloud" pricingPans={cloudPricingPlans} />
+      <PricingGrid
+        heading="Technical Team"
+        pricingPans={technicalTeamPricingPlans}
+      />
     </VStack>
   )
 }

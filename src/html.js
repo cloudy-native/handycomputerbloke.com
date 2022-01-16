@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 export default function HTML(props) {
   return (
@@ -15,7 +15,7 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{
             __html: `
             window.$crisp=[];window.CRISP_WEBSITE_ID="c66b9213-a939-4c3c-bba3-04ba77925d53";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
-        `
+        `,
           }}
         />
         {props.headComponents}
@@ -30,7 +30,7 @@ export default function HTML(props) {
         {props.postBodyComponents}
       </body>
     </html>
-  );
+  )
 }
 
 HTML.propTypes = {
@@ -39,5 +39,5 @@ HTML.propTypes = {
   bodyAttributes: PropTypes.object,
   preBodyComponents: PropTypes.array,
   body: PropTypes.string,
-  postBodyComponents: PropTypes.array
-};
+  postBodyComponents: PropTypes.array,
+}
